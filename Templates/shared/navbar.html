@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ url_for('index')}}">MaprochaineAuto</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('vehicules')}}">Nos véhicules<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('visiteVirtuelle')}}">Visite virtuelle</a>
+      </li>
+      {% if username == "client" %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('dashboard')}}">Mon espace</a>
+      </li>
+      {% endif %}
+      {% if username =='vendeur' %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('dashboard')}}">Dashboard</a>
+      </li>
+      {% endif %}
+      {% if username != "vendeur" and username != "client"%}
+      <li class="nav-item">
+        <a class="nav-link disabled" href="{{ url_for('dashboard', username = username)}}">Mon espace</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% if username != "vendeur" and username != "client"%}
+      <a href="{{ url_for('userlogin')}}"><button class="btn btn-outline-success my-2 my-sm-0">Connexion</button></a>
+    {% else %}
+      <img src="{{ url_for('static', filename='images/account.png') }}" style='height: 20px'>
+    {% endif %}
+  </div>
+</nav>

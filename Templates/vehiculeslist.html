@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Import the Bootstrap stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.5.2-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Nos véhicules</title>
+</head>
+<body>
+
+{% include "shared/navbar.html" %}
+<h1 class='pb-3 pt-3'>Nos véhicules</h1>
+{% if username == "vendeur" or username == "client"%}
+<p>Bonjour cher {{ username }}</p>
+{% endif %}
+<img src=" {{ url_for('static', filename='images/listevehicules.png') }}" style='width:100%;'>
+
+<div class='container'>
+  <table border='1'>
+    <thead>
+     <tr>
+       <th>Marque</th>
+       <th>Modèle</th>
+       <th>Kilométrage</th>
+        {% if username == "client" %}
+          <th>Actions></th>
+        {% endif %}
+     </tr>
+    </thead>
+    <tbody>
+          {% for vehicule in vehiculeList %}
+          <tr>
+              <td>{{ vehicule[0] }}</td>
+              <td>{{ vehicule[1] }}</td>
+              <td>{{ vehicule[2] }}</td>
+              {% if username == "client" %}
+                <td><a href="#" class='mr-3'>Détails</a><a href="#">Ajouter au panier</a></td>
+              {% endif %}
+          </tr>
+          {% endfor %}
+    </tbody>
+</div>
+<!-- Import jquery 3.3.1 slim min -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Import Bootstrap bundle -->
+<script src="{{ url_for('static', filename='bootstrap-4.5.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>

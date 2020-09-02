@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Import the Bootstrap stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.5.2-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <title>Login Ma prochaine Auto</title>
+</head>
+<body>
+  <form action="/userlogin" method="POST">
+  <div class='container pl-5 pr-5 login_container'>
+    <div class="imgcontainer m-0">
+      <img src="{{ url_for('static', filename='images/profile.png')}}" alt="Avatar" class="avatar" style='width:20%'>
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" class='form-control' required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" class='form-control' required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container forgot_password" style="background-color:#f1f1f1">
+      <span>Forgot <a href="#">password?</a></span>
+    </div>
+  </div>
+  </form>
+</body>
